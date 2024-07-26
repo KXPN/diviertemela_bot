@@ -77,6 +77,9 @@ class T {
                 return comando.substring(1);
         }
 
+        borrarArgumentos(evento) {
+                const comando = this.obtenerComando(evento);
+                evento.update.message.text = comando;
         }
 
 };
