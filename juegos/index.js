@@ -4,8 +4,6 @@ const juegos = {
         stop,
 /*
 
-pregunta pregunta profunda
-
 sabelotodo preguntas de cultura general
 
 dados, cantidad y caras por dado
