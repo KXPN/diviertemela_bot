@@ -48,7 +48,7 @@ class T {
                         .split('»').join('>')
                         .split('«').join('||')
                         // Junta líneas que deberían continuar
-                        .split('→\n').join('')
+                        .split('→\n').join(' ')
                 );
                 this.enviarMensaje(evento, mensaje);
         }
