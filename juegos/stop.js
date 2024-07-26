@@ -41,10 +41,10 @@ function enviarInstrucciones(t, evento) {
                 '»5. Me pides otra letra para seguir a la siguiente ronda',
                 '»',
                 '»6. Al terminar las letras, o el juego, suman los puntos y→',
-                '»determinan quien ganó',
+                'determinan quien ganó',
                 '»',
-                '»Al iniciar te enviaré una letra aleatoria sin repetición',
-                '»/stop_iniciar«',
+                '»Si ya entendiste, puedes recibir la primera letra aleatoria→',
+                'con /stop_iniciar«',
         ];
         t.enviarMensajeLineas(evento, mensajeLineas);
 }
