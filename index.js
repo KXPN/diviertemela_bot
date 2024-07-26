@@ -18,7 +18,8 @@ function enviarAyuda(evento) {
                 juegosLineas.push('/' + juego);
         }
         const mensajeLineas = [
-                'Juegos:',
+                'Esto son los juegos que sé jugar hasta ahora:',
+                '',
                 ...juegosLineas,
         ];
         t.enviarMensajeLineas(evento, mensajeLineas);
