@@ -31,11 +31,25 @@ class T {
         }
 
         async enviarMensaje(evento, mensaje) {
-                return await evento.replyWithMarkdown(mensaje);
+                return await evento.replyWithMarkdownV2(mensaje);
         }
 
         enviarMensajeLineas(evento, mensajeLineas) {
-                const mensaje = mensajeLineas.join('\n');
+                const mensaje = (
+                        mensajeLineas.join('\n')
+                        // Limpia caracteres que son formato para Telegram
+                        .split('_').join('\\_')
+                        .split('.').join('\\.')
+                        .split('-').join('\\-')
+                        .split('(').join('\\(')
+                        .split(')').join('\\)')
+                        .split('#').join('\\#')
+                        // Re-asigna formato de Telegram
+                        .split('»').join('>')
+                        .split('«').join('||')
+                        // Junta líneas que deberían continuar
+                        .split('→\n').join('')
+                );
                 this.enviarMensaje(evento, mensaje);
         }
 
