@@ -65,24 +65,18 @@ class T {
                 return this.obtenerMensaje(evento).text;
         }
 
+        obtenerArgumentos(evento) {
+                return this.obtenerTexto(evento).toLowerCase().split('_');
+        }
+
         obtenerComando(evento) {
-                const comando = (
-                        this
-                        .obtenerTexto(evento)
-                        .toLowerCase()
-                        .split(' ')
-                        [0]
-                        .split('_')
-                        [0]
-                );
+                const comando = (this.obtenerArgumentos(evento)[0] || '');
                 if (comando[0] !== '/') {
                         return '';
                 }
                 return comando.substring(1);
         }
 
-        obtenerArgumentos(evento) {
-                return this.obtenerTexto(evento).split(' ')[0].split('_');
         }
 
 };
