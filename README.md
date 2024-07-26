@@ -16,7 +16,7 @@ const env = {
 3. Instalar las dependencias y ejecutar
 ```
 npm update
-node index.js
+node --watch index.js
 ```
 
 # Ejecución en producción
