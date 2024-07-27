@@ -108,7 +108,7 @@ function enviarSiguienteLetraSinRepeticion(t, evento) {
         t.enviarMensajeLineas(evento, mensajeLineas);
 }
 
-const stop = function(t, evento) {
+function ejecutar(t, evento) {
         const argumentos = t.obtenerArgumentos(evento);
         const primerArgumento = (argumentos[1] || '');
         switch (primerArgumento) {
@@ -120,6 +120,11 @@ const stop = function(t, evento) {
                 default:
                         enviarSiguienteLetraSinRepeticion(t, evento);
         }
+}
+
+const stop = {
+        descripcion: 'para jugar STOP',
+        ejecutar,
 };
 
 module.exports = stop;

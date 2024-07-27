@@ -3,7 +3,7 @@ const { message } = require('telegraf/filters');
 
 const env = require('./.env');
 const t = require('./t');
-const juegos = require('./juegos/');
+const modulos = require('./modulos/');
 
 const bot = new Telegraf(env.LLAVE);
 const autorizadosPorId = env.AUTORIZADOS_POR_ID;
@@ -13,14 +13,21 @@ bot.help(enviarAyuda);
 bot.on(message('text'), revisarMensaje);
 
 function enviarAyuda(evento) {
-        const juegosLineas = [];
-        for (const juego in juegos) {
-                juegosLineas.push('/' + juego);
+        const modulosLineas = [];
+        for (const moduloNombre in modulos) {
+                const modulo = modulos[moduloNombre];
+                const moduloLinea = (
+                        '/' +
+                        moduloNombre +
+                        ' ' +
+                        modulo.descripcion
+                );
+                modulosLineas.push(moduloLinea);
         }
         const mensajeLineas = [
-                'Esto son los juegos que sé jugar hasta ahora:',
+                'Estos son los comandos que sé, hasta ahora:',
                 '',
-                ...juegosLineas,
+                ...modulosLineas,
         ];
         t.enviarMensajeLineas(evento, mensajeLineas);
 }
@@ -36,8 +43,8 @@ function validarAutorizacion(usuarioId) {
 
 function ejecutarComando(evento) {
         const comando = t.obtenerComando(evento);
-        if ((comando in juegos) && (typeof juegos[comando] === 'function')) {
-                juegos[comando](t, evento);
+        if (comando in modulos) {
+                modulos[comando].ejecutar(t, evento);
                 return;
         }
         t.enviarMensaje(evento, 'No conozco ese comando 😢');
